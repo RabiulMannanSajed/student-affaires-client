@@ -5,14 +5,23 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/Authprovider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   console.log("user", user?.displayName);
 
-  const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
+  const [showDropdown, setShowDropdown] = useState(false);
 
   // Function to toggle dropdown visibility
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
+  };
+
+  // log out function
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        alert("successfully log out");
+      })
+      .catch((error) => alert(error));
   };
 
   const navOption = (
@@ -40,6 +49,7 @@ const Navbar = () => {
       {/* profile of the user then add the chat option  */}
     </>
   );
+
   return (
     <div className="navbar bg-orange-500">
       <div className="navbar-start">
@@ -83,12 +93,13 @@ const Navbar = () => {
           <ul className="dropdown-menu w-52 mt-2 ">
             {/* Add your dropdown menu items here */}
             <li>
-              <a href="#">Dropdown Item 1</a>
+              <Link to="/profileHome">{user?.displayName}</Link>
             </li>
             <li>
-              <a href="#">Dropdown Item 2</a>
+              <button onClick={handleLogOut} className="btn btn-ghost">
+                Log Out
+              </button>
             </li>
-            {/* Add more dropdown items as needed */}
           </ul>
         )}
       </div>

@@ -9,6 +9,7 @@ const Main = () => {
   return (
     <div>
       {/* if the user is present then show him Outlet otherWish show signUp page  */}
+      {/* condition ? <true> : <false>  this is call ternary opretor */}
       {user ? (
         <>
           <Navbar></Navbar>

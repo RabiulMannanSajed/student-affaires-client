@@ -5,7 +5,7 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./Routers/Routers.jsx";
 import Authprovider from "./Provider/Authprovider.jsx";
-
+//  this is use to show in ui
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Authprovider>
     <React.StrictMode>

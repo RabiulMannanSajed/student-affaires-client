@@ -6,6 +6,8 @@ import Home from "../Pages/NewsSpeed/Home/Home";
 import Video from "../Pages/NewsSpeed/Video/Video";
 import Jobs from "../Pages/NewsSpeed/Jobs/Jobs";
 import Chat from "../Pages/NewsSpeed/Chat/Chat";
+import ProfileHome from "../Pages/Profile/ProfileHome/ProfileHome";
+import ProfileUpdate from "../Pages/Profile/ProfileUpdate/ProfileUpdate";
 
 export const router = createBrowserRouter([
   {
@@ -33,8 +35,16 @@ export const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
+        path: "/profileUpdate",
+        element: <ProfileUpdate></ProfileUpdate>,
+      },
+      {
         path: "/signUp",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/profileHome",
+        element: <ProfileHome></ProfileHome>,
       },
     ],
   },
