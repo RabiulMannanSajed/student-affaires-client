@@ -43,6 +43,7 @@ const Authprovider = ({ children }) => {
     });
   };
   //   this is watch is user is created or not if the user created then go inside of this
+  // TODO
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);

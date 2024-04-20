@@ -9,7 +9,9 @@ const SignUp = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const { createUser, UpdateUserProfile } = useContext(AuthContext);
+
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
@@ -29,12 +31,8 @@ const SignUp = () => {
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+          <h1 className="text-5xl font-bold">Sign Up </h1>
+          <p className="py-6">If you first time here then SignUp</p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -61,7 +59,7 @@ const SignUp = () => {
                   required: true,
                   pattern: {
                     /* TODO : cnage the bscse */
-                    // value: /\S+@uiu\.ac\.bd$/,
+                    value: /\S+@uiu\.ac\.bd$/,
                     message: "Entered value does not match email format",
                   },
                 })}
@@ -87,12 +85,6 @@ const SignUp = () => {
                 placeholder="password"
                 className="input input-bordered"
               />
-
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div className="form-control mt-6">
               <input

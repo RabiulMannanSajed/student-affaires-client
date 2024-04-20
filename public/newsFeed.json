@@ -7,7 +7,7 @@
       "profilePicture": "https://example.com/profile-picture.jpg"
     },
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "timestamp": "2024-04-19T08:30:00Z",
+
     "likes": [
       {
         "id": "201",
@@ -28,8 +28,7 @@
           "name": "Carol Williams",
           "profilePicture": "https://example.com/carol-profile-picture.jpg"
         },
-        "content": "Great post!",
-        "timestamp": "2024-04-19T09:00:00Z"
+        "content": "Great post!"
       }
     ]
   },
@@ -41,7 +40,7 @@
       "profilePicture": "https://example.com/jane-profile-picture.jpg"
     },
     "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-    "timestamp": "2024-04-19T10:00:00Z",
+
     "likes": [],
     "comments": []
   },
@@ -53,7 +52,7 @@
       "profilePicture": "https://example.com/emily-profile-picture.jpg"
     },
     "content": "Quisque eget nunc vel nulla pulvinar varius ac vel tortor.",
-    "timestamp": "2024-04-19T11:00:00Z",
+
     "likes": [
       {
         "id": "203",
@@ -69,8 +68,7 @@
           "name": "David Brown",
           "profilePicture": "https://example.com/david-profile-picture.jpg"
         },
-        "content": "Nice one!",
-        "timestamp": "2024-04-19T11:30:00Z"
+        "content": "Nice one!"
       }
     ]
   },
@@ -82,7 +80,7 @@
       "profilePicture": "https://example.com/michael-profile-picture.jpg"
     },
     "content": "Etiam sit amet est volutpat, dapibus nisi sed, eleifend quam.",
-    "timestamp": "2024-04-19T12:00:00Z",
+
     "likes": [],
     "comments": []
   },
@@ -94,7 +92,7 @@
       "profilePicture": "https://example.com/emma-profile-picture.jpg"
     },
     "content": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-    "timestamp": "2024-04-19T13:00:00Z",
+
     "likes": [
       {
         "id": "204",
@@ -110,8 +108,7 @@
           "name": "Alice Smith",
           "profilePicture": "https://example.com/alice-profile-picture.jpg"
         },
-        "content": "Interesting!",
-        "timestamp": "2024-04-19T13:30:00Z"
+        "content": "Interesting!"
       }
     ]
   },
@@ -123,7 +120,7 @@
       "profilePicture": "https://example.com/james-profile-picture.jpg"
     },
     "content": "Vivamus fermentum neque ut urna dignissim consectetur.",
-    "timestamp": "2024-04-19T14:00:00Z",
+
     "likes": [
       {
         "id": "205",
@@ -139,8 +136,7 @@
           "name": "Bob Johnson",
           "profilePicture": "https://example.com/bob-profile-picture.jpg"
         },
-        "content": "Keep it up!",
-        "timestamp": "2024-04-19T14:30:00Z"
+        "content": "Keep it up!"
       }
     ]
   },
@@ -152,7 +148,7 @@
       "profilePicture": "https://example.com/olivia-profile-picture.jpg"
     },
     "content": "Aliquam euismod mauris at lectus bibendum, eu bibendum erat tempor.",
-    "timestamp": "2024-04-19T15:00:00Z",
+
     "likes": [],
     "comments": []
   },
@@ -164,7 +160,7 @@
       "profilePicture": "https://example.com/william-profile-picture.jpg"
     },
     "content": "Donec nec dui nec nulla mattis convallis.",
-    "timestamp": "2024-04-19T16:00:00Z",
+
     "likes": [
       {
         "id": "206",
@@ -180,8 +176,7 @@
           "name": "Carol Williams",
           "profilePicture": "https://example.com/carol-profile-picture.jpg"
         },
-        "content": "Awesome!",
-        "timestamp": "2024-04-19T16:30:00Z"
+        "content": "Awesome!"
       }
     ]
   }
