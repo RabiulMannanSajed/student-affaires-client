@@ -7,7 +7,7 @@ const HomeNews = ({ newsFeed }) => {
   const totalLikes = likes.length;
   const totalComment = comments.length;
   return (
-    <div className="m-5 ">
+    <div className="m-5  ">
       <h2>{author?.name}</h2>
       <div className="avatar ">
         <div className="w-10 rounded-full">

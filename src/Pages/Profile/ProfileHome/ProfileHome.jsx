@@ -3,7 +3,7 @@ import UploadContent from "../UploadContent/UploadContent";
 
 const ProfileHome = () => {
   return (
-    <div className="flex">
+    <div className="flex justify-around">
       <ProfileInfo></ProfileInfo>
       <UploadContent></UploadContent>
     </div>

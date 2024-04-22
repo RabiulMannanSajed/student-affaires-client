@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/Authprovider";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const {
@@ -17,14 +18,29 @@ const SignUp = () => {
       const loggedUser = result.user;
       console.log(loggedUser);
 
-      UpdateUserProfile(data.name, data.photoUrl).then(() => {
-        const saveUser = {
-          name: data.name,
-          email: data.email,
-        };
+      UpdateUserProfile(data.name, data.photoUrl)
+        .then(() => {
+          const saveUser = {
+            name: data.name,
+            email: data.email,
+          };
 
-        //  TODO : send the data to the data base
-      });
+          // this is taking the data of user and post the info to the database
+          fetch("http://localhost:5000/user", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+              }
+            });
+        })
+        .catch((error) => console.log(error));
     });
   };
   return (
@@ -93,7 +109,15 @@ const SignUp = () => {
                 value="Sign Up"
               />
             </div>
-          </form>
+          </form>{" "}
+          <p className="p-4">
+            <small>
+              Already have an Account{" "}
+              <Link className="text-blue-500" to="/login">
+                Login{" "}
+              </Link>{" "}
+            </small>
+          </p>
         </div>
       </div>
     </div>
