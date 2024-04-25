@@ -1,20 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import { useQuery } from "@tanstack/react-query";
 
 const useUserInfo = () => {
-    const {
-        isPending,
-        data: users = [],
-        refetch,
-      } = useQuery({
-        queryKey: ["user"],
-        queryFn: async () => {
-          const res = await fetch("https://uiueateryserver.onrender.com/users");
-          return res.json();
-        },
-      });
-      return [users, refetch, isPending];
-    };
-    
+  const {
+    isPending,
+    data: userInfos = [],
+    refetch,
+  } = useQuery({
+    queryKey: ["userInfos"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/userInfos");
+      return res.json();
+    },
+  });
+  return [userInfos, refetch, isPending];
+};
 
 export default useUserInfo;

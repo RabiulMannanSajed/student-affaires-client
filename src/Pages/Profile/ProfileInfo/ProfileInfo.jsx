@@ -1,22 +1,57 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/Authprovider";
-import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useUserInfo from "../../../hooks/useUserInfo";
+import { FaHeart, FaLocationDot } from "react-icons/fa6";
+import { IoSchoolSharp } from "react-icons/io5";
+import { FaHome } from "react-icons/fa";
+import { MdOutlineWork } from "react-icons/md";
 
 const ProfileInfo = () => {
   const { user } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState([]);
+  const [userInfos] = useUserInfo();
+  console.log(userInfos);
+
   useEffect(() => {
-    fetch("http://localhost:5000/userInfos")
-      .then((res) => res.json())
-      .then((data) => setUserInfo(data));
-  }, []);
-  const userInDb = userInfo.find((dbUser) => dbUser?.email === user?.email);
-  console.log(userInDb);
+    const userUpdatedInfo = userInfos.find(
+      (updateInfo) => updateInfo?.userEmail == user?.email
+    );
+    setUserInfo(userUpdatedInfo);
+  }, [user?.email, userInfos]);
+  console.log(userInfo);
+
   return (
-    <div>
+    <div className="bg-slate-400 p-5 mt-4 rounded-xl">
       <h2 className="text-xl font-semibold ">{user.displayName} </h2>
-      <Link to="/profileUpdate">edit</Link>
+      <p className="flex items-center">
+        <MdOutlineWork className="mr-2" />
+        {userInfo?.companyName}
+      </p>
+      <p className="flex items-center ">
+        <IoSchoolSharp className="mr-2" />
+        {userInfo?.varsity}
+      </p>
+      <p className="flex items-center ">
+        <IoSchoolSharp className="mr-2" />
+        {userInfo?.school}
+      </p>
+      <p className="flex items-center ">
+        <FaLocationDot className="mr-2" /> From : {userInfo?.hometown}
+      </p>
+      <p className="flex items-center ">
+        <FaHome className="mr-2" />
+        Lives in :{userInfo?.currentCity}
+      </p>
+      <p className="flex items-center ">
+        {" "}
+        <FaHeart className="mr-2" />
+        {userInfo?.relationship}
+      </p>
+
+      <Link className="btn btn-neutral w-full mt-3" to="/profileUpdate">
+        Update Profile
+      </Link>
     </div>
   );
 };
