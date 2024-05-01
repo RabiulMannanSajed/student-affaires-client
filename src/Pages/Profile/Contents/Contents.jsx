@@ -8,8 +8,15 @@ const Contents = () => {
   const { user } = useContext(AuthContext);
   const [contents] = useContent();
   const [userPosts, setUserPosts] = useState([]);
+  const [allImage, setAllImage] = useState(null);
 
-  //  this is for input field of the comment section
+  useEffect(() => {
+    fetch("http://localhost:5000/uploadFiles")
+      .then((res) => res.json())
+      .then((data) => setAllImage(data));
+  }, []);
+  console.log(allImage);
+  // //  this is for input field of the comment section
   const [inputVisible, setInputVisible] = useState(false);
   const toggleInputVisible = () => {
     setInputVisible(!inputVisible);
@@ -21,7 +28,6 @@ const Contents = () => {
     );
     setUserPosts(userUpdatedInfo);
   }, [contents, user?.email]);
-  console.log(userPosts);
 
   return (
     <div className="mt-5">

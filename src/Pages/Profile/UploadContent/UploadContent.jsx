@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/Authprovider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { IoIosSend } from "react-icons/io";
-
+import axios from "axios";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const UploadContent = () => {
   const { user } = useContext(AuthContext);
@@ -15,7 +15,6 @@ const UploadContent = () => {
     },
   });
   const date = new Date().toJSON().slice(0, 10);
-  console.log(date);
 
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const onSubmit = async (data) => {
@@ -55,6 +54,25 @@ const UploadContent = () => {
         console.error("Error during fetch:", error);
       });
   };
+  //  this is for upload files
+  const [file, setFile] = useState("");
+  // const [uploadedUrl, setUploadedUrl] = useState("");
+
+  const submitImage = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    console.log(file);
+    const result = await axios.post(
+      "http://localhost:5000/uploadFiles",
+      formData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
+    console.log(result);
+  };
+
   return (
     <div className="bg-slate-400 p-5 rounded-xl">
       <form onSubmit={handleSubmit(onSubmit)} className="">
@@ -85,6 +103,16 @@ const UploadContent = () => {
             </button>
           </div>
         </div>
+      </form>
+      {/*  this is for upload file  */}
+      <form action="" onSubmit={submitImage}>
+        <input
+          type="file"
+          className=""
+          accept="application/pdf"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

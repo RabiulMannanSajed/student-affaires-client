@@ -1,9 +1,14 @@
-import React from "react";
+import UsersInChat from "../UsersInChat/UsersInChat";
+import Chatting from "../Chatting/Chatting";
 
 const Chat = () => {
+  // find all users then make all chat system
+
+  // keep all user in a side and if user click the user then show all their chat
+
   return (
-    <div>
-      <h2>this is the chat area</h2>
+    <div className="">
+      <UsersInChat></UsersInChat>
     </div>
   );
 };
