@@ -9,7 +9,6 @@ const Contents = () => {
   const [contents] = useContent();
   const [userPosts, setUserPosts] = useState([]);
   const [allImage, setAllImage] = useState(null);
-
   useEffect(() => {
     fetch("http://localhost:5000/uploadFiles")
       .then((res) => res.json())
@@ -50,7 +49,6 @@ const Contents = () => {
           <figure>
             {userPost?.img ? (
               <>
-                {" "}
                 <img className="h-96" src={userPost?.img} />
               </>
             ) : (
@@ -74,6 +72,7 @@ const Contents = () => {
           )}
         </div>
       ))}
+
       {/* this is for like and comment */}
     </div>
   );

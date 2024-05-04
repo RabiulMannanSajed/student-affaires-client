@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { FaFacebookMessenger, FaHome, FaShoppingBag } from "react-icons/fa";
-import { FiVideo } from "react-icons/fi";
+// import { FiVideo } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/Authprovider";
-
+import logo from "../../../assets/logo.png";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log("user", user?.displayName);
@@ -31,11 +31,11 @@ const Navbar = () => {
           <FaHome className="w-12 text-xl" />
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/video">
           <FiVideo className="w-12 text-xl" />
         </Link>
-      </li>
+      </li> */}
       <li>
         <Link to="/jobs">
           <FaShoppingBag className="w-12 text-xl" />
@@ -46,12 +46,11 @@ const Navbar = () => {
           <FaFacebookMessenger className="w-12 text-xl" />
         </Link>
       </li>
-      {/* profile of the user then add the chat option  */}
     </>
   );
 
   return (
-    <div className="navbar bg-orange-500">
+    <div className="navbar bg-orange-400  ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -77,13 +76,14 @@ const Navbar = () => {
             {navOption}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a>
+          <img className="w-14 h-14 " src={logo} alt="" />
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navOption}</ul>
       </div>
       <div className="navbar-end">
-        {/*  make this is profile link */}
         <div className="avatar placeholder" onClick={toggleDropdown}>
           <div className="bg-neutral text-neutral-content rounded-full w-12">
             <span> {user?.displayName}</span>
@@ -91,7 +91,6 @@ const Navbar = () => {
         </div>
         {showDropdown && (
           <ul className="dropdown-menu w-52 mt-2 ">
-            {/* Add your dropdown menu items here */}
             <li>
               <Link to="/profileHome">{user?.displayName}</Link>
             </li>
@@ -103,6 +102,37 @@ const Navbar = () => {
           </ul>
         )}
       </div>
+      {/* <div className="dropdown  navbar-end">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost btn-circle avatar"
+        >
+          <div className="w-10 rounded-full">
+            <img
+              alt="Tailwind CSS Navbar component"
+              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+            />
+          </div>
+        </div>
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a className="justify-between">
+              Profile
+              <span className="badge">New</span>
+            </a>
+          </li>
+          <li>
+            <a>Settings</a>
+          </li>
+          <li>
+            <a>Logout</a>
+          </li>
+        </ul>
+      </div> */}
     </div>
   );
 };

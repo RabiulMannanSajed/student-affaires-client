@@ -3,17 +3,24 @@ import { Outlet } from "react-router-dom";
 import { AuthContext } from "../Provider/Authprovider";
 import SignUp from "../SignUp/SignUp";
 import Navbar from "../Pages/NewsSpeed/Navbar/Navbar";
+import backgroundImage from "../assets/bg Img.jpg";
 const Main = () => {
   const { user } = useContext(AuthContext);
 
   return (
     <div>
-      {/* if the user is present then show him Outlet otherWish show signUp page  */}
-      {/* condition ? <true> : <false>  this is call ternary opretor */}
       {user ? (
         <>
-          <Navbar></Navbar>
-          <Outlet></Outlet>
+          <div
+            className="bg-cover bg-center w-full h-full "
+            style={{
+              backgroundImage: `url(${backgroundImage})
+                `, // Set the URL as background image
+            }}
+          >
+            <Navbar></Navbar>
+            <Outlet></Outlet>
+          </div>
         </>
       ) : (
         <>

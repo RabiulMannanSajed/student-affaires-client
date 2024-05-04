@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { FaCommentDots } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
+import { AuthContext } from "../../../Provider/Authprovider";
+import useComments from "../../../hooks/useComments";
 
 const HomeNews = ({ newsFeed, refetch }) => {
+  const { user } = useContext(AuthContext);
   const { _id, uploadedContent, userName, date, img, like } = newsFeed;
+  const [comments] = useComments();
+  const [userComments, setUserComment] = useState([]);
   const [inputVisible, setInputVisible] = useState(false);
   const toggleInputVisible = () => {
     setInputVisible(!inputVisible);
   };
 
+  useEffect(() => {
+    const commentID = comments.filter(
+      (comment) => String(comment?.contentId) === String(_id)
+    );
+    setUserComment(commentID);
+  }, [_id, comments]);
+
   const handleLike = (id) => {
     console.log(id);
-
     const like = {
       like: 0,
     };
@@ -36,16 +47,17 @@ const HomeNews = ({ newsFeed, refetch }) => {
     event.preventDefault();
     const form = event.target;
     let comment = form.comment.value;
-    console.log(comment);
-
-    console.log(_id);
+    const commenterEmail = user?.email;
+    const contentId = _id;
 
     const comments = {
       comment: comment,
+      commenterEmail: commenterEmail,
+      contentId: contentId,
     };
 
-    fetch(`http://localhost:5000/contents/${_id}/comments`, {
-      method: "PATCH",
+    fetch("http://localhost:5000/comments", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -53,15 +65,16 @@ const HomeNews = ({ newsFeed, refetch }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.modifiedCount) {
-          refetch();
+        if (data.insertedId) {
+          console.log("comment added");
         }
       });
-    form.comment.value = " ";
   };
   return (
-    <div className="m-5  bg-slate-400 p-5">
-      <h2 className="mb-2">{userName}</h2> <p>{date}</p>
+    <div className="m-5 bg-[#85929E] bg-opacity-55 p-5 rounded-xl">
+      <div className="flex">
+        <h2 className="mb-2 mr-2">{userName}</h2> <p>{date}</p>
+      </div>
       <div className="avatar ">
         <div className="">
           <img src={img} />
@@ -82,19 +95,29 @@ const HomeNews = ({ newsFeed, refetch }) => {
         </button>
       </div>
       {inputVisible && (
-        <form onSubmit={handleComment} className="flex">
-          <input
-            type="name"
-            placeholder="Comment "
-            name="comment"
-            className="input input-bordered"
-            required
-          />
+        <>
+          {userComments.map((userComment) => (
+            <div key={userComment._id}>
+              <div className="bg-slate-900 mb-2  p-3 rounded-xl text-white">
+                <p>{userComment.commenterEmail}</p>
+                <p>{userComment.comment}</p>
+              </div>
+            </div>
+          ))}
+          <form onSubmit={handleComment} className="flex">
+            <input
+              type="name"
+              placeholder="Comment "
+              name="comment"
+              className="input input-bordered"
+              required
+            />
 
-          <button className="btn bg-green-400  " type="submit">
-            <IoIosSend />
-          </button>
-        </form>
+            <button className="btn bg-green-400  " type="submit">
+              <IoIosSend />
+            </button>
+          </form>
+        </>
       )}
     </div>
   );

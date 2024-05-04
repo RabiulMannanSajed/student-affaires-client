@@ -56,12 +56,21 @@ const UploadContent = () => {
   };
   //  this is for upload files
   const [file, setFile] = useState("");
-  // const [uploadedUrl, setUploadedUrl] = useState("");
 
+  // Send Pdf to the backend
   const submitImage = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", file);
+
+    const formDataObject = {
+      file: file,
+      email: userEmail,
+    };
+
+    Object.keys(formDataObject).forEach((key) => {
+      formData.append(key, formDataObject[key]);
+    });
+
     console.log(file);
     const result = await axios.post(
       "http://localhost:5000/uploadFiles",
@@ -105,14 +114,16 @@ const UploadContent = () => {
         </div>
       </form>
       {/*  this is for upload file  */}
-      <form action="" onSubmit={submitImage}>
+      <form action="" onSubmit={submitImage} className="mt-3">
         <input
           type="file"
           className=""
           accept="application/pdf"
           onChange={(e) => setFile(e.target.files[0])}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-success">
+          Submit
+        </button>
       </form>
     </div>
   );
